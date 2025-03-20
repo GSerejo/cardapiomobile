@@ -1,25 +1,23 @@
 import { StyleSheet, Image, Platform } from 'react-native';
 
 import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
 
-// adcionar foto de fundo para aba do hamburgur e creveja
+
+// adcionar foto de fundo para aba do hamburgur e cerveja
 export default function HamburgersScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
+      headerBackgroundColor={{ light: '#db8e16', dark: '#42220b' }}
+      
       headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="burger"
-          style={styles.headerImage}
-        />
-      }>
+              <Image
+                source={require('../../assets/images/hamburguerFundo.png')}
+                style={styles.burguerBack}
+              />
+            }>
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Hambúrgueres</ThemedText>
       </ThemedView>
@@ -33,23 +31,27 @@ export default function HamburgersScreen() {
         <ThemedText>
           Que tal um combo de hambúrguer com fritas e uma cerveja artesanal?
         </ThemedText>
-        <ExternalLink href="https://www.hamburgueresartesanal.com">
-          <ThemedText type="link">Veja todos os nossos combos</ThemedText>
-        </ExternalLink>
       </Collapsible>
     </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  container: {
+    flex: 1,
+    backgroundColor: '#db8e16', // Define a cor do topo como fundo de toda a tela
+    padding: 16,
   },
   titleContainer: {
     flexDirection: 'row',
     gap: 8,
   },
+  burguerBack: {
+    height: 250,
+    width: 400,
+    bottom: 0,
+    //left: 50,
+    position: 'absolute',
+  },
 });
+

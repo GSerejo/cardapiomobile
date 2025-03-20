@@ -34,7 +34,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <Image
               source={require('@/assets/images/home-icon.png')} // Caminho do ícone de home
-              style={{ width: 28, height: 28, shadowColor: '#fff', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.8, shadowRadius: 5, elevation: 5 }} // Ajuste o tamanho do ícone e aplique a cor
+              style={{ width: 28, height: 28, shadowColor: '#fff',}} // Ajuste o tamanho do ícone e aplique a cor
             />
           ),
         }}
@@ -46,11 +46,12 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <Image
               source={require('../../assets/images/hamburguer-icon.png')} // Caminho do ícone de hambúrguer
-              style={{ width: 28, height: 28 }} // Ajuste o tamanho do ícone e aplique a cor
-            />
-          ),
-        }}
-      />
+              style={{ width: 28, height: 28, }} // Ajuste o tamanho do ícone e aplique a cor
+              />
+            ),
+          
+          }}
+        />
       <Tabs.Screen
         name="beers"
         options={{

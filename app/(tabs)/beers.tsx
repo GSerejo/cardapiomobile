@@ -12,12 +12,11 @@ export default function BeersScreen() {
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
       headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="beer"
-          style={styles.headerImage}
-        />
+                    <Image
+                      source={require('../../assets/images/cerveja-capa.jpg')}
+                      style={styles.beerBack}
+                    />
+                  
       }>
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Cervejas Artesanais</ThemedText>
@@ -32,9 +31,6 @@ export default function BeersScreen() {
         <ThemedText>
           A cerveja artesanal tem uma longa história, com raízes em tradições de diferentes culturas.
         </ThemedText>
-        <ExternalLink href="https://www.cervejaartesanal.com">
-          <ThemedText type="link">Saiba mais sobre cervejas artesanais</ThemedText>
-        </ExternalLink>
       </Collapsible>
     </ParallaxScrollView>
   );
@@ -50,5 +46,12 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     gap: 8,
+  },
+  beerBack: {
+    height: 250,
+    width: 400,
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
   },
 });
