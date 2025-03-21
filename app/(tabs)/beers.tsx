@@ -1,57 +1,90 @@
-import { StyleSheet, Image, Platform } from 'react-native';
-
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
+import { StyleSheet, Image, FlatList, View } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
+
+const beers = [
+  {
+    id: '1',
+    name: 'IPA - Indian Pale Ale',
+    description: 'Cerveja encorpada, amargor marcante com notas cítricas.',
+    price: 'R$ 20,00',
+    image: require('../../assets/images/lupulo-icon.png'),
+  },
+  
+];
 
 export default function BeersScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-                    <Image
-                      source={require('../../assets/images/cerveja-capa.jpg')}
-                      style={styles.beerBack}
-                    />
-                  
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Cervejas Artesanais</ThemedText>
-      </ThemedView>
-      <ThemedText>🍺Aqui você encontra a variedade das melhores cervejas artesanais!🍺</ThemedText>
-      <Collapsible title="Tipos de Cerveja">
-        <ThemedText>
-          Explore diferentes tipos de cervejas artesanais, como IPA, Lager, Stout, e mais.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="História da Cerveja">
-        <ThemedText>
-          A cerveja artesanal tem uma longa história, com raízes em tradições de diferentes culturas.
-        </ThemedText>
-      </Collapsible>
-    </ParallaxScrollView>
+    <FlatList
+      data={beers}
+      keyExtractor={(item) => item.id}
+      ListHeaderComponent={
+        <View>
+          {/* Cabeçalho com imagem */}
+          <Image source={require('../../assets/images/cerveja-capa.jpg')} style={styles.beerBack} />
+          <ThemedView style={styles.container}>
+            <ThemedText type="title">Cervejas Artesanais</ThemedText>
+          </ThemedView>
+        </View>
+      }
+      renderItem={({ item }) => (
+        <View style={styles.card}>
+          <View style={styles.textContainer}>
+            <ThemedText style={styles.title}>{item.name}</ThemedText>
+            <ThemedText style={styles.description}>{item.description}</ThemedText>
+            <ThemedText style={styles.price}>{item.price}</ThemedText>
+          </View>
+          <Image source={item.image} style={styles.image} />
+        </View>
+      )}
+      showsVerticalScrollIndicator={false}
+    />
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
-  },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
+  container: {
+    flex: 1,
+    padding: 16,
   },
   beerBack: {
     height: 250,
-    width: 400,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+    width: '100%',
+  },
+  card: {
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 10,
+    alignItems: 'center',
+    shadowColor: '#db8e16',
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  textContainer: {
+    flex: 1,
+    marginRight: 10,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#666',
+  },
+  description: {
+    fontSize: 14,
+    color: '#666',
+    marginVertical: 4,
+  },
+  price: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#db8e16',
+  },
+  image: {
+    width: 80,
+    height: 80,
+    borderRadius: 10,
   },
 });
