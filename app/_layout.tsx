@@ -6,10 +6,10 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
-
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { CartProvider } from '@/context/CartContext'; // Certifique-se de importar corretamente
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
+// Impede que a tela de splash desapareça antes do carregamento dos assets.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -29,13 +29,17 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <CartProvider> 
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="LoginScreen" options={{ title: 'Login' }} />
+          <Stack.Screen name="cadastro" options={{ title: 'Cadastro' }} />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+        <StatusBar style="auto" />
+      </ThemeProvider>
+    </CartProvider>
   );
 }
-
+;

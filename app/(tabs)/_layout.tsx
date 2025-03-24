@@ -64,6 +64,34 @@ export default function TabLayout() {
           ),
         }}
       />
+      
+      <Tabs.Screen
+        name="combos"
+        options={{
+          title: 'combos',
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={require('../../assets/images/combos-icon.png')} // Caminho do ícone de hambúrguer
+              style={{ width: 28, height: 28, }} // Ajuste o tamanho do ícone e aplique a cor
+              />
+            ),
+          
+          }}
+        />
+         
+      <Tabs.Screen
+        name="CartScreen"
+        options={{
+          title: 'Carrinho',
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={require('../../assets/images//Cart-icon.png')} // Caminho do ícone de hambúrguer
+              style={{ width: 28, height: 28, }} // Ajuste o tamanho do ícone e aplique a cor
+              />
+            ),
+          
+          }}
+        />
     </Tabs>
   );
 }

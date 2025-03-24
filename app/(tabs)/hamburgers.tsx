@@ -1,59 +1,68 @@
 import React, { useState } from 'react';
-import { StyleSheet, Image, FlatList, View, Modal, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Image,FlatList, View, Modal, Text, TouchableOpacity } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import * as CartContext from '@/context/CartContext';
 
 const hamburgers = [
   {
     id: '1',
-    name: 'Chickenz Classic',
-    description: 'Pão brioche, chicken supreme burger seara, duplo queijo prato...',
-    price: 'R$ 33,00',
+    name: 'Burguer Big Big',
+    description: 'Pão brioche, Duas carnes 180g com queijo cheedar, salada, Maionese da casa...',
+    price: 'R$ 39,90',
     image: require('../../assets/images/burguer1.png'),
   },
   {
     id: '2',
-    name: 'Chickenz Classic',
-    description: 'Pão brioche, chicken supreme burger seara, duplo queijo prato...',
-    price: 'R$ 33,00',
+    name: 'Burguer matador de barbie',
+    description: 'Pão brioche, Carne blend de churrasco, salada , BarbieKill da casa...',
+    price: 'R$ 35,00',
     image: require('../../assets/images/burguer2.png'),
   },
   {
     id: '3',
-    name: 'Chickenz Classic',
-    description: 'Pão brioche, chicken supreme burger seara, duplo queijo prato...',
-    price: 'R$ 33,00',
+    name: 'Burguer Cheddar Egg',
+    description: 'Pão brioche, Carne 120g, Frites Egg, Salada, maionese da casa...',
+    price: 'R$ 32,00',
     image: require('../../assets/images/burguer3.png'),
   },
   {
     id: '4',
-    name: 'Chickenz Classic',
-    description: 'Pão brioche, chicken supreme burger seara, duplo queijo prato...',
-    price: 'R$ 33,00',
+    name: 'Burguer Brabo',
+    description: 'Pão brioche, Duas carnes blend de fraudinha, maionese de alho e salada...',
+    price: 'R$ 37,00',
     image: require('../../assets/images/burguer4.png'),
   },
   {
     id: '5',
-    name: 'Chickenz Classic',
+    name: 'Chickenz Salad',
     description: 'Pão brioche, chicken supreme burger seara, duplo queijo prato...',
     price: 'R$ 33,00',
     image: require('../../assets/images/burguer5.png'),
   },
   {
     id: '6',
-    name: 'Chickenz Classic',
-    description: 'Pão brioche, chicken supreme burger seara, duplo queijo prato...',
-    price: 'R$ 33,00',
+    name: 'Sweet Burguer',
+    description: 'Pão brioche de 3 queijos, Barbecue de goiaba, cebola caramelizada e uma carne 180g...',
+    price: 'R$ 35,00',
     image: require('../../assets/images/burguer6.png'),
+  },
+  {
+    id: '7',
+    name: 'Vegie Burguer',
+    description: 'Pão brioche, Sweet picles, pepino, Brotos e uma carne de Soja com beterraba ...',
+    price: 'R$ 35,00',
+    image: require('../../assets/images/vegburguer.png'),
   },
 ];
 
 export default function HamburgersScreen() {
+  const { addToCart } = CartContext.useCart();
   const [selectedBurger, setSelectedBurger] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
   // Função para abrir o modal
-  const openModal = (burger) => {
+  const openModal = (burger: React.SetStateAction<null>) => {
     setSelectedBurger(burger);
     setModalVisible(true);
   };
@@ -101,7 +110,13 @@ export default function HamburgersScreen() {
                 <Text style={styles.modalDescription}>{selectedBurger.description}</Text>
                 <Text style={styles.modalPrice}>{selectedBurger.price}</Text>
 
-                <TouchableOpacity style={styles.addToCartButton} onPress={() => alert('Adicionado ao carrinho!')}>
+                <TouchableOpacity
+                  style={styles.addToCartButton}
+                  onPress={() => {
+                    addToCart(selectedBurger);
+                    closeModal();
+                  }}
+                >
                   <Text style={styles.addToCartText}>Adicionar ao Carrinho</Text>
                 </TouchableOpacity>
 
