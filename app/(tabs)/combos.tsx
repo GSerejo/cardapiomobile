@@ -2,69 +2,34 @@ import { StyleSheet, Image, FlatList, View } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
-const beers = [
+const combos = [
   {
-    id: '1',
-    name: 'IPA - Indian Pale Ale',
-    description: 'Cerveja encorpada, amargor marcante com notas cítricas.',
-    price: 'R$ 20,00',
-    image: require('../../assets/images/cerveja1.png'),
+    id: 'combo1',
+    name: 'Combo Burger + Cerveja IPA',
+    description: 'Um hambúrguer Chickenz Classic acompanhado de uma cerveja IPA.',
+    price: 'R$ 45,00',
+    image: require('../../assets/images/hamburguer-icon.png'),
   },
   {
-    id: '2',
-    name: 'Régua de degustação ',
-    description: 'Uma régua com as varidades mais pedidas da Casa',
-    price: 'R$ 45,00',
-    image: require('../../assets/images/cerveja2.png'),
-  },
-  {
-    id: '3',
-    name: 'Régua de degustação ',
-    description: 'Uma régua com as varidades mais pedidas da Casa',
-    price: 'R$ 45,00',
-    image: require('../../assets/images/reguabeer.png'),
-  },
-  {
-    id: '4',
-    name: 'Régua de degustação ',
-    description: 'Uma régua com as varidades mais pedidas da Casa',
-    price: 'R$ 45,00',
-    image: require('../../assets/images/cerveja4.png'),
-  },
-  {
-    id: '5',
-    name: 'Régua de degustação ',
-    description: 'Uma régua com as varidades mais pedidas da Casa',
-    price: 'R$ 45,00',
-    image: require('../../assets/images/cerveja5.png'),
-  },
-  {
-    id: '6',
-    name: 'Régua de degustação ',
-    description: 'Uma régua com as varidades mais pedidas da Casa',
-    price: 'R$ 45,00',
-    image: require('../../assets/images/cerveja6.png'),
-  },
-  {
-    id: '7',
-    name: 'Régua de degustação ',
-    description: 'Uma régua com as varidades mais pedidas da Casa',
-    price: 'R$ 45,00',
-    image: require('../../assets/images/cerveja3.png'),
+    id: 'combo2',
+    name: 'Combo Burger + Cerveja Lager',
+    description: 'Um hambúrguer Chickenz Classic acompanhado de uma cerveja Lager Pilsen.',
+    price: 'R$ 40,00',
+    image: require('../../assets/images/lupulo-icon.png'),
   },
 ];
 
-export default function BeersScreen() {
+export default function HamburgersScreen() {
   return (
     <FlatList
-      data={beers}
+      data={[...combos]} // Mesclando as listas de hambúrgueres e combos
       keyExtractor={(item) => item.id}
       ListHeaderComponent={
         <View>
           {/* Cabeçalho com imagem */}
-          <Image source={require('../../assets/images/cerveja-capa.jpg')} style={styles.beerBack} />
+          <Image source={require('../../assets/images/hamburguerFundo.png')} style={styles.burguerBack} />
           <ThemedView style={styles.container}>
-            <ThemedText type="title">Cervejas Artesanais</ThemedText>
+            <ThemedText type="title">Combos Harmonizados</ThemedText>
           </ThemedView>
         </View>
       }
@@ -88,7 +53,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
-  beerBack: {
+  burguerBack: {
     height: 250,
     width: '100%',
   },
