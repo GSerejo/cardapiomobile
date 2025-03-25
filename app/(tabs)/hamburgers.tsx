@@ -3,6 +3,8 @@ import { StyleSheet, Image,FlatList, View, Modal, Text, TouchableOpacity } from 
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import * as CartContext from '@/context/CartContext';
+import Animated, { FadeInUp } from 'react-native-reanimated';
+
 
 const hamburgers = [
   {
@@ -74,6 +76,7 @@ export default function HamburgersScreen() {
   };
 
   return (
+    
     <View style={{ flex: 1 }}>
       <FlatList
         data={hamburgers}
@@ -88,6 +91,8 @@ export default function HamburgersScreen() {
         }
         renderItem={({ item }) => (
           <TouchableOpacity style={styles.card} onPress={() => openModal(item)}>
+           
+              
             <View style={styles.textContainer}>
               <ThemedText style={styles.title}>{item.name}</ThemedText>
               <ThemedText style={styles.description}>{item.description}</ThemedText>
@@ -95,6 +100,8 @@ export default function HamburgersScreen() {
             </View>
             <Image source={item.image} style={styles.image} />
           </TouchableOpacity>
+          
+          
         )}
         showsVerticalScrollIndicator={false}
       />
